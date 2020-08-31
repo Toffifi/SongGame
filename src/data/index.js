@@ -140,7 +140,7 @@ const SFXData = [
         year: '2016',
         description: 'Persona 5 — компьютерная ролевая игра, созданная студией P-Studio, входящей в состав японской компании Atlus.',
         image: 'https://giffiles.alphacoders.com/610/61071.gif',
-        audio: '../assets/audio/its_showtime.mp3',
+        audio: 'audio/its_showtime.mp3',
       },
       {
         id: 5,
@@ -194,7 +194,7 @@ const SFXData = [
         year: '2019',
         description: 'Death Stranding — компьютерная игра в жанре action с открытым миром, разработанная студией Kojima Productions',
         image: 'https://thumbs.gfycat.com/WindyConsiderateEastrussiancoursinghounds-size_restricted.gif',
-        audio: '../assets/audio/death_stranding_like.mp3',
+        audio: 'audio/death_stranding_like.mp3',
       },
     ],
   },

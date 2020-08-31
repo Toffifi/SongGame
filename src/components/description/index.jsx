@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Player from '../player/index.jsx';
 
 function Description({ selectedAnswer }) {
   return (
@@ -12,6 +13,7 @@ function Description({ selectedAnswer }) {
               <p>{selectedAnswer.year}</p>
               <p>{selectedAnswer.description}</p>
               <img alt={selectedAnswer.name} src={selectedAnswer.image} width="640" height="404" />
+              <Player playingItem={selectedAnswer} />
             </>
           )
           : <p>Пока ничего</p>

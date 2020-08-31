@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import PropTypes from 'prop-types';
+import Player from '../player/index.jsx';
 
 function Question({ question }) {
   if (question) {
@@ -8,6 +9,7 @@ function Question({ question }) {
     return (
       <div>
         <p>{question.name}</p>
+        <Player playingItem={question} />
       </div>
     );
   }
