@@ -10,7 +10,7 @@ const Player = ({ playingItem }) => {
   });
 
   return (
-    <div>
+    <div className="player">
       <AudioPlayer
         ref={player}
         autoPlay={false}

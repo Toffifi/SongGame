@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Player from '../player/index.jsx';
+import './style.scss';
 
 const Question = React.memo(({ question, rightAnswer }) => {
   if (question) {
@@ -8,19 +9,19 @@ const Question = React.memo(({ question, rightAnswer }) => {
       console.log(question.name);
     }, [question]);
     return (
-      <div>
+      <div className="question">
         {
         rightAnswer
           ? (
             <>
-              <p>{question.name}</p>
               <img src={question.image} alt={question.name} />
+              <h3>{question.name}</h3>
             </>
           )
           : (
             <>
-              <p>*****</p>
-              <img alt="default" src="https://png.pngtree.com/png-vector/20190123/ourlarge/pngtree-hand-painted-cartoon-gamepad-game-png-image_539567.jpg" />
+              <img alt="default" src="https://img.freepik.com/free-vector/hand-drawn-sketch-joystick-monochrome_93150-259.jpg?size=626&ext=jpg" />
+              <h3>*****</h3>
             </>
           )
         }

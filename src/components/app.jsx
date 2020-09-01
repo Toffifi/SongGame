@@ -23,6 +23,7 @@ function App() {
 
   useEffect(() => {
     if (activeCategory < titles.length) {
+      setRightAnswer(false);
       const random = Math.floor(Math.random() * (SFX[activeCategory].games.length - 1));
       const arr = SFX[activeCategory].games.map((e, i) => ({
         id: e.id,
@@ -40,19 +41,23 @@ function App() {
     } else {
       setFinish(true);
     }
+    setAnswerDescription(null);
   }, [activeCategory]);
 
   useEffect(() => {
+    const curAnswer = answers.find(e => e.id === activeAnswer);
     if (activeAnswer) {
-      setAnswerDescription(answers.find(e => e.id === activeAnswer));
+      setAnswerDescription(curAnswer);
     }
-    setAnswers((arr) => {
-      const ans = arr.find(e => e.id === activeAnswer);
-      if (ans) {
-        ans.pressed = true;
-      }
-      return arr.map(e => e);
-    });
+    if (!rightAnswer || (curAnswer !== null && curAnswer.right)) {
+      setAnswers((arr) => {
+        const ans = arr.find(e => e.id === activeAnswer);
+        if (ans) {
+          ans.pressed = true;
+        }
+        return arr.map(e => e);
+      });
+    }
   }, [activeAnswer]);
 
   const oneMoreTime = () => {
@@ -70,16 +75,18 @@ function App() {
             <Header score={score} array={titles} activeCategory={activeCategory} />
             <main>
               <Question question={question} rightAnswer={rightAnswer} />
-              <Answers
-                answers={answers}
-                setActiveAnswer={setActiveAnswer}
-                setRightAnswer={setRightAnswer}
-                score={score}
-                setScore={setScore}
-              />
-              <Description
-                selectedAnswer={answerDescription}
-              />
+              <section>
+                <Answers
+                  answers={answers}
+                  setActiveAnswer={setActiveAnswer}
+                  setRightAnswer={setRightAnswer}
+                  score={score}
+                  setScore={setScore}
+                />
+                <Description
+                  selectedAnswer={answerDescription}
+                />
+              </section>
               <Button
                 activeCategory={activeCategory}
                 setActiveCategory={setActiveCategory}

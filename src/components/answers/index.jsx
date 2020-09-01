@@ -7,30 +7,41 @@ import './style.scss';
 const Answers = React.memo(({
   answers, setActiveAnswer, setRightAnswer, score, setScore,
 }) => {
-  const click = (id) => {
-    const answer = answers.find(e => id === e.id);
+  const click = (id, pressed) => {
     setActiveAnswer(id);
+
+    if (pressed) {
+      return;
+    }
     const right = answers.find(e => id === e.id && e.right);
-    answer.pressed = true;
+
     if (right) {
       setRightAnswer(!!right);
-      const myScore = answers.length - answers.filter(e => e.pressed && !e.right).length;
-      if ((answers.filter(e => e.pressed && !e.right).length + 1) !== answers.length) {
-        setScore(score + myScore);
+      if (answers.find(e => id === e.id && !e.pressed)) {
+        const myScore = answers.length - answers.filter(e => e.pressed && !e.right).length;
+        if ((answers.filter(e => e.pressed && !e.right).length + 1) !== answers.length) {
+          setScore(score + myScore);
+        }
       }
     }
   };
   return (
-    <div>
+    <div className="answers">
       <ul>
-        {answers.map(e => (
-          <li key={e.id}>
-            <div role="button" disabled={e.pressed} onClick={() => click(e.id)}>
-              <i className="fas fa-circle" style={{ color: e.right ? 'green' : 'red' }} />
-              {e.name}
-            </div>
-          </li>
-        ))}
+        {answers.map((e) => {
+          let color = 'gray';
+          if (e.pressed) {
+            color = e.right ? 'green' : 'red';
+          }
+          return (
+            <li key={e.id}>
+              <div role="button" disabled={e.pressed} onClick={() => click(e.id, e.pressed)}>
+                <i className="fas fa-circle" style={{ color }} />
+                {e.name}
+              </div>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

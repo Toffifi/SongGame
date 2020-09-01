@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import './style.scss';
 
 function Header({ score, array, activeCategory }) {
   const titleState = array.map((e, i) => {
@@ -25,20 +26,29 @@ function Header({ score, array, activeCategory }) {
   }, [activeCategory]);
   return (
     <header>
-      <div>
-        <h1>Video Game SFX Quiz</h1>
-        <p>
+      <div className="top">
+        <h1 className="logo">
+          VideoGame
+          <span className="logo-span"> SFX Quiz</span>
+        </h1>
+        <p className="score">
           Score:
           {score}
         </p>
       </div>
-      <div>
-        {titles.map(e => (
-          <div className={e.class} key={e.key}>
-            {e.name}
-          </div>
-        ))
-        }
+      <div className="titles">
+        <ul>
+          {titles.map(e => (
+            <li className={e.class} key={e.key}>
+              <div>
+                <p>
+                  {e.name}
+                </p>
+              </div>
+            </li>
+          ))
+          }
+        </ul>
       </div>
     </header>
   );
