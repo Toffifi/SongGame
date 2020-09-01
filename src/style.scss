@@ -18,7 +18,11 @@ img{
 }
 
 section{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 30px;
+  display: flex;
+  flex-direction: unset;
+  justify-content: space-between;
+
+  &>div{
+    width: 48%;
+  }
 }

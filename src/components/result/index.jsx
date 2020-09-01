@@ -5,12 +5,22 @@ import PropTypes from 'prop-types';
 const Result = ({ score, oneMoreTime }) => (
   <div className="result_container">
     <h2>Поздравляем!</h2>
-    <h4>
+    <p>
       Вы прошли викторину и набрали
-      {score}
-      из 30 возможных баллов.
-    </h4>
-    {score >= 29 ? <img src="https://thumbs.gfycat.com/WindyConsiderateEastrussiancoursinghounds-size_restricted.gif" width={300} alt="Like" /> : null}
+      {` ${score} `}
+      из 29 возможных баллов.
+    </p>
+    {score >= 29
+      ? (
+        <>
+          <p>Это абсолютная победа!</p>
+          <div>
+            <img src="https://thumbs.gfycat.com/WindyConsiderateEastrussiancoursinghounds-size_restricted.gif" width={300} alt="Like" />
+          </div>
+        </>
+      )
+      : null
+    }
     <button
       type="button"
       className="again"

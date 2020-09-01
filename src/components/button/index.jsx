@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './style.scss';
 
 function Button({
   activeCategory, setActiveCategory, rightAnswer, setRightAnswer,
@@ -11,7 +12,7 @@ function Button({
 
   return (
     <div>
-      <button type="button" disabled={!rightAnswer} onClick={() => click()}>Next level</button>
+      <button className={rightAnswer ? 'btn next' : 'btn stop'} type="button" disabled={!rightAnswer} onClick={() => click()}>Next level</button>
     </div>
   );
 }

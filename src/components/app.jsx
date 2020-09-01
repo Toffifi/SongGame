@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+import useSound from 'use-sound';
 import SFX from '../data';
 import Header from './header/index.jsx';
 import Button from './button/index.jsx';
@@ -12,9 +13,11 @@ import Result from './result/index.jsx';
 function App() {
   const titles = SFX.map(e => e.name);
 
+  const [playCorrect] = useSound('audio/smb_coin.wav');
+  const [playError] = useSound('audio/smb_breakblock.wav');
+
   const [activeCategory, setActiveCategory] = useState(0);
   const [answers, setAnswers] = useState([]);
-  const [activeAnswer, setActiveAnswer] = useState(null);
   const [answerDescription, setAnswerDescription] = useState(null);
   const [question, setQuestion] = useState(null);
   const [rightAnswer, setRightAnswer] = useState(false);
@@ -44,21 +47,28 @@ function App() {
     setAnswerDescription(null);
   }, [activeCategory]);
 
-  useEffect(() => {
-    const curAnswer = answers.find(e => e.id === activeAnswer);
-    if (activeAnswer) {
-      setAnswerDescription(curAnswer);
-    }
-    if (!rightAnswer || (curAnswer !== null && curAnswer.right)) {
+  const answerClicked = (answer) => {
+    setAnswerDescription(answer);
+    if (!rightAnswer) {
+      if (answer.right) {
+        setRightAnswer(true);
+        playCorrect();
+        const myScore = answers.length - answers.filter(e => e.pressed && !e.right).length;
+        if ((answers.filter(e => e.pressed && !e.right).length + 1) !== answers.length) {
+          setScore(s => s + myScore);
+        }
+      } else {
+        playError();
+      }
       setAnswers((arr) => {
-        const ans = arr.find(e => e.id === activeAnswer);
+        const ans = arr.find(e => e.id === answer.id);
         if (ans) {
           ans.pressed = true;
         }
         return arr.map(e => e);
       });
     }
-  }, [activeAnswer]);
+  };
 
   const oneMoreTime = () => {
     setScore(0);
@@ -67,36 +77,31 @@ function App() {
   };
 
   return (
+
     <>
+      <Header score={score} array={titles} activeCategory={activeCategory} />
       { finish
         ? <Result score={score} oneMoreTime={oneMoreTime} />
         : (
-          <>
-            <Header score={score} array={titles} activeCategory={activeCategory} />
-            <main>
-              <Question question={question} rightAnswer={rightAnswer} />
-              <section>
-                <Answers
-                  answers={answers}
-                  setActiveAnswer={setActiveAnswer}
-                  setRightAnswer={setRightAnswer}
-                  score={score}
-                  setScore={setScore}
-                />
-                <Description
-                  selectedAnswer={answerDescription}
-                />
-              </section>
-              <Button
-                activeCategory={activeCategory}
-                setActiveCategory={setActiveCategory}
-                rightAnswer={rightAnswer}
-                setRightAnswer={setRightAnswer}
+          <main>
+            <Question question={question} rightAnswer={rightAnswer} />
+            <section>
+              <Answers
+                answers={answers}
+                answerClicked={answerClicked}
               />
-            </main>
-          </>
-        )
-    }
+              <Description
+                selectedAnswer={answerDescription}
+              />
+            </section>
+            <Button
+              activeCategory={activeCategory}
+              setActiveCategory={setActiveCategory}
+              rightAnswer={rightAnswer}
+              setRightAnswer={setRightAnswer}
+            />
+          </main>
+        )}
     </>
   );
 }
