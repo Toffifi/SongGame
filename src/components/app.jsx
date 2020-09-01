@@ -6,6 +6,7 @@ import Button from './button/index.jsx';
 import Answers from './answers/index.jsx';
 import Description from './description/index.jsx';
 import Question from './question/index.jsx';
+import Result from './result/index.jsx';
 
 
 function App() {
@@ -16,11 +17,13 @@ function App() {
   const [activeAnswer, setActiveAnswer] = useState(null);
   const [answerDescription, setAnswerDescription] = useState(null);
   const [question, setQuestion] = useState(null);
+  const [rightAnswer, setRightAnswer] = useState(false);
+  const [score, setScore] = useState(0);
+  const [finish, setFinish] = useState(false);
 
   useEffect(() => {
     if (activeCategory < titles.length) {
       const random = Math.floor(Math.random() * (SFX[activeCategory].games.length - 1));
-      setQuestion(SFX[activeCategory].games[random]);
       const arr = SFX[activeCategory].games.map((e, i) => ({
         id: e.id,
         name: e.name,
@@ -31,9 +34,11 @@ function App() {
         pressed: false,
         right: i === random,
       }));
+      setQuestion(arr[random]);
       arr.sort(() => Math.random() - 0.5);
       setAnswers(arr);
-      console.log(activeCategory);
+    } else {
+      setFinish(true);
     }
   }, [activeCategory]);
 
@@ -50,13 +55,41 @@ function App() {
     });
   }, [activeAnswer]);
 
+  const oneMoreTime = () => {
+    setScore(0);
+    setActiveCategory(0);
+    setFinish(false);
+  };
+
   return (
     <>
-      <Header score="2" array={titles} activeCategory={activeCategory} />
-      <Question question={question} />
-      <Answers answers={answers} setActiveAnswer={setActiveAnswer} />
-      <Description selectedAnswer={answerDescription} />
-      <Button activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
+      { finish
+        ? <Result score={score} oneMoreTime={oneMoreTime} />
+        : (
+          <>
+            <Header score={score} array={titles} activeCategory={activeCategory} />
+            <main>
+              <Question question={question} rightAnswer={rightAnswer} />
+              <Answers
+                answers={answers}
+                setActiveAnswer={setActiveAnswer}
+                setRightAnswer={setRightAnswer}
+                score={score}
+                setScore={setScore}
+              />
+              <Description
+                selectedAnswer={answerDescription}
+              />
+              <Button
+                activeCategory={activeCategory}
+                setActiveCategory={setActiveCategory}
+                rightAnswer={rightAnswer}
+                setRightAnswer={setRightAnswer}
+              />
+            </main>
+          </>
+        )
+    }
     </>
   );
 }

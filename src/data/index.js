@@ -48,7 +48,7 @@ const SFXData = [
         year: '1994',
         description: 'Super Metroid является приключенческой видеоигрой и третьей игрой в серии Metroid. Она была разработана Nintendo Research & Development 1',
         image: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/41913a6a-946b-4407-a2ec-94e984e429a1/dbuz7tr-806fb8cb-b617-40a8-bdbd-f0aeefc35bc5.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvNDE5MTNhNmEtOTQ2Yi00NDA3LWEyZWMtOTRlOTg0ZTQyOWExXC9kYnV6N3RyLTgwNmZiOGNiLWI2MTctNDBhOC1iZGJkLWYwYWVlZmMzNWJjNS5naWYifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.CxcBGuzgXK4PCP0E0fnrw29H-VVIrzBKz86j_W-lPMA',
-        audio: 'https://www.xeno-canto.org/sounds/uploaded/MMEJYLOPDO/XC496049-Pilgrimsfalk_06.mp3',
+        audio: 'https://vg-sfx-quiz.herokuapp.com/api/sounds/xuIDmSkBRQ.mp3',
       },
     ],
   },
@@ -93,7 +93,7 @@ const SFXData = [
         name: 'Resident Evil 4',
         year: '2005',
         description: 'Resident Evil 4, известная в Японии как Biohazard 4 — мультиплатформенная компьютерная игра в жанрах Survival horror и 3D-шутер от третьего лица',
-        image: 'https://gfycat.com/ru/somelameenglishpointer',
+        image: 'https://thumbs.gfycat.com/SomeLameEnglishpointer-size_restricted.gif',
         audio: 'https://vg-sfx-quiz.herokuapp.com/api/sounds/ttKN9jWJGH.mp3',
       },
       {

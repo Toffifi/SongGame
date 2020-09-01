@@ -1,14 +1,29 @@
-/* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Player from '../player/index.jsx';
 
-function Question({ question }) {
+const Question = React.memo(({ question, rightAnswer }) => {
   if (question) {
-    console.log(question.name);
+    useEffect(() => {
+      console.log(question.name);
+    }, [question]);
     return (
       <div>
-        <p>{question.name}</p>
+        {
+        rightAnswer
+          ? (
+            <>
+              <p>{question.name}</p>
+              <img src={question.image} alt={question.name} />
+            </>
+          )
+          : (
+            <>
+              <p>*****</p>
+              <img alt="default" src="https://png.pngtree.com/png-vector/20190123/ourlarge/pngtree-hand-painted-cartoon-gamepad-game-png-image_539567.jpg" />
+            </>
+          )
+        }
         <Player playingItem={question} />
       </div>
     );
@@ -16,7 +31,7 @@ function Question({ question }) {
   return (
     <div />
   );
-}
+});
 
 Question.defaultProps = {
   question: null,
@@ -30,7 +45,10 @@ Question.propTypes = {
     description: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     audio: PropTypes.string.isRequired,
+    pressed: PropTypes.bool.isRequired,
+    right: PropTypes.bool.isRequired,
   }),
+  rightAnswer: PropTypes.bool.isRequired,
 };
 
 export default Question;

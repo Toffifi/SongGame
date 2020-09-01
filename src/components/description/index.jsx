@@ -12,11 +12,11 @@ function Description({ selectedAnswer }) {
               <h3>{selectedAnswer.name}</h3>
               <p>{selectedAnswer.year}</p>
               <p>{selectedAnswer.description}</p>
-              <img alt={selectedAnswer.name} src={selectedAnswer.image} width="640" height="404" />
+              <img alt={selectedAnswer.name} src={selectedAnswer.image} />
               <Player playingItem={selectedAnswer} />
             </>
           )
-          : <p>Пока ничего</p>
+          : <p>Прослушайте саундэффект и выберете из какой он игры</p>
       }
     </div>
 

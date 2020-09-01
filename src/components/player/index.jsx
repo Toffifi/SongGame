@@ -47,6 +47,8 @@ Player.propTypes = {
     description: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     audio: PropTypes.string.isRequired,
+    pressed: PropTypes.bool.isRequired,
+    right: PropTypes.bool.isRequired,
   }),
 };
 

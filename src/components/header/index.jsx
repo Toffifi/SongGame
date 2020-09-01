@@ -45,7 +45,7 @@ function Header({ score, array, activeCategory }) {
 }
 
 Header.propTypes = {
-  score: PropTypes.string.isRequired,
+  score: PropTypes.number.isRequired,
   array: PropTypes.arrayOf(
     PropTypes.string.isRequired,
   ).isRequired,
