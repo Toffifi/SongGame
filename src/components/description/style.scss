@@ -1,0 +1,47 @@
+.description{
+  background-color: #303030;
+  box-sizing: border-box;
+  padding: 1rem;
+  display: grid;
+  grid-template-rows: 50% 50%;
+  align-items: center;
+  border: 1px solid #555;
+  border-radius: 0.25rem;
+
+  &>p{
+    margin: 0;
+    text-align: justify;
+  }
+
+  .card{
+    display: grid;
+    grid-template-rows: 1fr 1fr 2fr;
+    grid-template-columns: 43% 57%;
+    height: 100%;
+    align-items: center;
+
+    img{
+      grid-row: 1/4;
+      width: 100%;
+    }
+
+    h3, p{
+      margin-left: 1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .player div{
+      padding: 0;
+
+      .rhap_controls-section{
+        margin-left: 8px;
+        margin-top: 0;
+      }
+      .rhap_volume-container{
+        margin-left: 0;
+      }
+    }
+  }
+}

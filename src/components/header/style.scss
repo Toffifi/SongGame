@@ -1,0 +1,117 @@
+header{
+  display: flex;
+  margin-top: .5rem;
+  flex-direction: column;
+
+  .top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo{
+      display: flex;
+      align-items: center;
+      font-size: 2rem;
+      font-family: 'Orbitron', sans-serif;
+      margin: 0;
+    }
+
+    .logo-span{
+      color: #00bc8c;
+    }
+
+    .score{
+      font-size: 20px;
+    }
+  }
+
+  .titles{
+    display: flex;
+    justify-content: center;
+
+    ul{
+      list-style: none;
+      display: flex;
+      padding: 0;
+
+      li{
+        cursor: default;
+
+        div{
+          background-color: #008966;
+          text-align: center;
+          padding: 11px 10px 0 80px;
+          position: relative;
+          margin-right: 1px;
+          text-decoration: none;
+          color: #fff;
+
+          &:after{
+            content: "";
+            color: #008966;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-left: 15px solid #008966;
+            position: absolute;
+            right: -15px;
+            top: 0;
+            z-index: 1;
+          }
+
+          &::before{
+            content: "";
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-left: 15px solid #d4f2ff;
+            position: absolute;
+            left: 0;
+            top: 0;
+          }
+
+          p{
+            padding: 0 42px 5px 0;
+            margin: -5px 0 0 -15px;
+            white-space: nowrap;
+          }
+        }
+
+        &:first-child div{
+          border-top-left-radius: 10px; border-bottom-left-radius: 10px;
+
+          &:before{
+            display: none;
+          }
+        }
+
+        &:last-child div{
+          padding-right: 80px;
+          border-top-right-radius: 10px; border-bottom-right-radius: 10px;
+
+          &:after{
+            display: none;
+          }
+        }
+      }
+
+      .active div{
+        background-color: #00bc8c;
+        color: #fff;
+
+        &:after{
+          color: #00bc8c;
+          border-left: 15px solid #00bc8c;
+        }
+      }
+
+      .was_active div{
+        background-color: rgb(0, 88, 67);
+        color: rgb(123, 123, 123);
+        &:after{
+          color: rgb(0, 88, 67);
+          border-left: 15px solid rgb(0, 88, 67);
+        }
+      }
+    }
+  }
+
+}
